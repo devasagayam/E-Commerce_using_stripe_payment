@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+  {% block  extra_head %}
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <meta charset="utf-8">
+  {% endblock extra_head %}
+
+{% block body %}
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Profile</li>
+    </ol>
+  </div>
+</div>
+
+
+
+
+  {% if info.status %}
+  <div class="container" style="padding-top: 60px;">
+<h1 class="page-header">Your Profile</h1>
+<div class="row">
+  <!-- left column -->
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="text-center">
+      {% if info.image %}
+      <img src="{{ info.image.url }}" class="avatar img-circle img-thumbnail" alt="avatar" width="300" height="200">
+      <h2>{{info.Name}}</h2>
+      {% else %}
+      <img src="" class="avatar img-circle img-thumbnail" alt="avatar">
+      <h2>{{info.Name}}</h2><br>
+
+      {% endif %}
+
+
+    </div>
+  </div>
+  <!-- edit form column -->
+  <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+
+
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label class="col-md-3 control-label">Username:</label>
+        <div class="col-md-8">
+          <input class="form-control" value="{{info.user.username}}" disabled type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">Gender:</label>
+        <div class="col-md-8">
+          <input class="form-control" value="{{info.gender}}" disabled type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">DOB:</label>
+        <div class="col-md-8">
+          <input class="form-control" value="{{info.DOB|date:"D, d M, Y"}}" disabled type="text">
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Email:</label>
+        <div class="col-lg-8">
+          <input class="form-control" value="{{info.user.email}} " disabled type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">Phone:</label>
+        <div class="col-md-8">
+          <input class="form-control" value="{{info.phone}}" disabled type="text">
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-8">
+          <a class="btn btn-default" href="{% url 'accounts:profile_update' username=user.username %}">Edit Info</a>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+  {% else %}
+
+
+    <div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Your Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h1></h1>
+
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+
+
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" value="{{info.user.username}}" disabled type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Gender:</label>
+          <div class="col-md-8">
+            <input class="form-control" value="" disabled type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">DOB:</label>
+          <div class="col-md-8">
+            <input class="form-control" value="" disabled type="text">
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" value="{{info.user.email}}" disabled type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Phone:</label>
+          <div class="col-md-8">
+            <input class="form-control" value="" disabled type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" value="" disabled type="text">
+          </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <a class="btn btn-default" href="{% url 'accounts:profile_update' username=user.username %}">Edit Info</a>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  {% endif %}
+
+
+
+
+
+
+  {% endblock body %}

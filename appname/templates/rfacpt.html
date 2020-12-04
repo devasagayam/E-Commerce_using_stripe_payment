@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hi {{ product.user.username }} Sorry for inconvenience,
+
+The refund request for the Transaction-id: {{product.ref_code}} for the payment of ₹ {{product.payment.amount}} has been aprooved.
+
+The debited amount {{product.payment.amount}} will be credit to your account by 3 working days that is on or before {{ddd}}
+
+Sincerely,
+Tariff Rent@oneStep Team
+
+{% endautoescape %}

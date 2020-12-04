@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style >
+  #lg{
+    background:#1966FF;
+  }
+  #lg:hover{
+    background:#19B2FF;
+  }
+  .kuchbi{
+          width: 1200px;
+          height: 100%;
+          margin: 20px auto;
+          border: 1px solid #b0a9a9;
+          padding: 14px 10px;
+          outline: none;
+          color: #000000;
+          font-weight: bold;
+
+          border-radius: 10px;
+  }
+</style>
+<!-- breadcrumbs -->
+
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Order summary</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+<!-- checkout -->
+	<div class="checkout">
+		<div class="container">
+			<h3 class="animated wow slideInLeft" data-wow-delay=".5s">Your shopping cart : <span></span></h3>
+			<div class="checkout-right animated wow slideInUp" data-wow-delay=".5s">
+				<table class="timetable_sub">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+							<th>Product Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th> Rent Days</th>
+
+							<th>Total Item Price</th>
+
+						</tr>
+					</thead>
+					{% for order_item in object.items.all %}
+					<tr class="rem1">
+						<td class="invert">{{ forloop.counter }}</td>
+							<td class="invert">{{ order_item.item.title }}</td>
+							<td class="invert">₹{{ order_item.item.price }}</td>
+						<td class="invert">
+							 <div class="quantity">
+								<div class="quantity-select">
+									<a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}" class="entry value-minus">&nbsp;</a>
+									<div class="entry value"><span>{{ order_item.quantity }}</span></div>
+									<a href="{% url 'core:add-to-cart' order_item.item.slug %}" class="entry value-plus active">&nbsp;</a>
+								</div>
+							</div>
+						</td>
+
+						<td class="invert">
+							 <div class="quantity">
+								 {% if order_item.rentdays == 1%}
+								 <div class="quantity-select">
+ 									<a href="" class="entry value-minus">&nbsp;</a>
+ 									<div class="entry value"><span>{{ order_item.rentdays }}</span></div>
+ 									<a href="{% url 'core:Increase-rent-days' order_item.item.slug %}" class="entry value-plus active">&nbsp;</a>
+ 								</div>
+								 {% else %}
+								<div class="quantity-select">
+									<a href="{% url 'core:Decraese-rent-days' order_item.item.slug %}" class="entry value-minus">&nbsp;</a>
+									<div class="entry value"><span>{{ order_item.rentdays }}</span></div>
+									<a href="{% url 'core:Increase-rent-days' order_item.item.slug %}" class="entry value-plus active">&nbsp;</a>
+								</div>
+								{% endif %}
+							</div>
+						</td>
+						<td>
+            {% if order_item.item.discount_price %}
+                <i class="fa fa-inr" aria-hidden="true"></i> ₹{{ order_item.get_total_discount_item_price }}
+                <span class="badge badge-primary">Saving <i class="fa fa-inr" aria-hidden="true"></i>₹{{ order_item.get_amount_saved }}</span>
+            {% else %}
+                <i class="fa fa-inr" aria-hidden="true"></i>₹{{ order_item.get_total_item_price }}
+            {% endif %}
+            <a style='color: red;' href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+                <i class="fas fa-trash float-right"></i>
+            </a>
+            </td>
+
+
+					{% empty %}
+	        <tr>
+	            <td colspan='6'>Your cart is empty</td>
+	        </tr>
+					{% endfor %}
+					{% if object.coupon %}
+	        <tr>
+	            <td colspan="5"><b>Coupon</b></td>
+	            <td><b>-<i class="fa fa-inr" aria-hidden="true"></i>₹{{ object.coupon.amount }}</b></td>
+	        </tr>
+	        {% endif %}
+	        {% if object.get_total %}
+	        <tr>
+	            <td colspan="5"><b>Order Total</b></td>
+	            <td><b><i class="fa fa-inr" aria-hidden="true"></i>₹{{ object.get_total }}</b></td>
+	        </tr>
+					<tr>
+	            <td colspan="6">
+	            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+	            </td>
+	        </tr>
+	        {% endif %}
+				</table>
+			</div>
+			<div class="checkout-left">
+				<form class="card p-2" action="{% url 'core:add-coupon' %}" method="POST">
+						{% csrf_token %}
+						<div class="input-group">
+								{{ couponform.code }}
+								<br>
+								<div class="input-group-append">
+									<br>
+								<button class="btn btn-secondary btn-md waves-effect m-0" id="lg" type="submit">Redeem</button>
+								</div>
+						</div>
+				</form>
+
+				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+
+
+
+					<a href="/"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //checkout -->
+{% endblock body %}

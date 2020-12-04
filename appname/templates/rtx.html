@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ product.user.username }} , you have rented {{product.item}} and it suppose to be returned by {{product.due_date}}
+but you did not returned yet.
+
+So kindly returned it by {{dd}} .
+
+Sincerely,
+Tariff Rent@oneStep Team
+
+{% endautoescape %}

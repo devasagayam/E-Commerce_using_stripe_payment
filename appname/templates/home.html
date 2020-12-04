@@ -1,0 +1,164 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+
+
+{% block body %}
+
+<!-- banner -->
+	<div class="banner">
+		<div class="container">
+			<div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
+				<h3>Rent the products with</h3>
+				<h4>Up to <span>20% <i>Off/-</i></span></h4>
+				<div class="wmuSlider example1">
+					<div class="wmuSliderWrapper">
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="banner-info1">
+									<p>T-Shirts + Formal Pants + Jewellery + Cosmetics</p>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="banner-info1">
+									<p>Toys + Furniture + Lighting + Watches</p>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="banner-info1">
+									<p>Tops + Books & Media + Sports</p>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+					<script src="js/jquery.wmuSlider.js"></script>
+					<script>
+						$('.example1').wmuSlider();
+					</script>
+			</div>
+		</div>
+	</div>
+<!-- //banner -->
+
+<!-- //banner-bottom -->
+<!-- collections -->
+	<div class="new-collections">
+		<div class="container">
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">New Collections</h3>
+
+			<div class="new-collections-grids">
+
+        <main>
+          <br>
+
+                <div class="container">
+
+
+
+            <!--Navbar-->
+
+
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+
+              <div class="row wow fadeIn">
+
+                {% for item in object_list %}
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                  <div class="card">
+
+                    <div class="view overlay">
+                      {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %}
+                      <img src="{{ item.image.url }}" class="card-img-top" width="150" height="150">
+                      <a href="{{ item.get_absolute_url }}">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+
+                    <div class="card-body text-center">
+                      <a href="" class="grey-text">
+                        <h5>{{ item.get_category_display }}</h5>
+                      </a>
+                      <h5>
+                        <strong>
+                          <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                            <span class="badge badge-pill {{ item.get_label_display }}-color">Per day Rent</span>
+                          </a>
+                        </strong>
+                      </h5>
+
+                      <h4 class="font-weight-bold blue-text">
+                        <strong><i class="fa fa-inr" aria-hidden="true"></i>
+                        {% if item.discount_price %}
+                        {{ item.discount_price }}
+                        {% else %}
+                        {{ item.price }}
+                        {% endif %}
+                        </strong>
+                      </h4>
+
+                    </div>
+                    <br>
+                  </div>
+
+                </div>
+
+                {% endfor %}
+              </div>
+              <!--Pagination-->
+
+              {% if is_paginated %}
+              <nav class="d-flex justify-content-center wow fadeIn">
+                <ul class="pagination pg-blue">
+
+                  {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  {% endif %}
+
+                  <li class="page-item active">
+                    <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+
+                  {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+              {% endif %}
+              <!--//Pagination-->
+
+            </section>
+
+</main>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //collections -->
+
+
+
+
+
+{% endblock body %}

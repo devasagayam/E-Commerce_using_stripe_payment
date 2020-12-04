@@ -1,0 +1,71 @@
+
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+{% block body %}
+<style >
+  #lg{
+    background:#1966FF;
+  }
+  #lg:hover{
+    background:#19B2FF;
+  }
+  .kuchbi{
+          width: 400px;
+          height: 100%;
+          margin: 20px auto;
+          border: 1px solid #b0a9a9;
+          padding: 14px 10px;
+          outline: none;
+          color: #000000;
+          font-weight: bold;
+
+          border-radius: 10px;
+  }
+
+  .btn-default{
+    background:#E6FFF2;
+  }
+  #g:hover{
+    background:#99E600;
+  }
+  #r:hover{
+    background:red;
+  }
+</style>
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Refund Request</li>
+    </ol>
+  </div>
+</div>
+
+<div class="login">
+  <div class="container">
+    <h3 class="animated wow zoomIn" data-wow-delay=".5s">Refund Request</h3>
+
+    <div class="kuchbi">
+
+
+      <form method="post">
+        <label for="x">Transaction Id:</label>
+        <input style="border-radius:12px;" type="text" name="x" value="{{ref.trid}}" disabled><br>
+        <br>
+        <label for="y">Complaint:</label> <br>
+        <br><textarea style="border-radius:12px; " disabled name="y" rows="4" cols="35">{{ref.reason}}</textarea>
+        <br>
+        <br>
+        <a id="btn"class="btn btn-default" href="{% url 'core:rfrj' slug=ref.trid %}">Reject Request</a>
+
+        <a id="btn" class="btn btn-default" href="{% url 'core:rfac' slug=ref.trid %}">Accept Request</a>
+
+      </form>
+      </div>
+    </div>
+</div>
+
+{% endblock body %}

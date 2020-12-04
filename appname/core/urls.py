@@ -1,0 +1,63 @@
+from django.urls import path
+from .views import (
+    ItemDetailView,
+    CheckoutView,
+    HomeView,
+    OrderSummaryView,
+    add_to_cart,
+    remove_from_cart,
+    remove_single_item_from_cart,
+    PaymentView,
+    AddCouponView,
+    RequestRefundView,
+    increasedays,
+    decreasedays,
+    addstock,
+    uproduct,
+    action,
+    utransaction,
+    stock,
+    transaction,recover,refrq,remainder,updatestock,viewref,refaccept,refreject,
+    party,costume,faq,ps,rating,coment,cont,delete_product
+
+)
+
+app_name = 'core'
+
+urlpatterns = [
+path('Delete/<slug>/',delete_product.as_view(),name='dlt'),
+    path('stock/',stock.as_view(),name='stock'),
+    path('contact-us/',cont,name='cont'),
+    path('rating/<slug:slug>/',rating,name='rating'),
+    path('coment/<slug:slug>/',coment,name='coment'),
+    path('faq',faq.as_view(),name='faq'),
+    path('payment-sucess',ps.as_view(),name='ps'),
+    path('accept-request/<slug:slug>/', refaccept, name='rfac'),
+    path('reject-request/<slug:slug>/', refreject, name='rfrj'),
+    path('remainder/<int:pk>/',remainder,name='remainder'),
+    path('reason/<int:pk>/',viewref,name='reason'),
+    path('updatestock/<int:pk>/',updatestock.as_view(),name='updatestock'),
+    path('Refund-Requests/',refrq.as_view(), name='refrq'),
+    path('All-transaction/',transaction.as_view(), name='transaction'),
+    path('your-transaction/',utransaction.as_view(), name='utransaction'),
+    path('your-product/',uproduct.as_view(), name='uproduct'),
+    path('recover-product/',recover.as_view(), name='recover'),
+    path('action/<int:pk>/',action,name='action'),
+    path('addstock/', addstock.as_view(), name='addstock'),
+    path('', HomeView.as_view(), name='home'),
+    path('party-time-products', party.as_view(), name='party'),
+    path('Costumes', costume, name='costume'),
+    #path('profile/',profilecreation.as_view(),name='profile'),
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('order-summary/', OrderSummaryView.as_view(), name='order-summary'),
+    path('product/<slug>/', ItemDetailView, name='product'),
+    path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
+    path('Increase-rent-days/<slug>/',increasedays, name='Increase-rent-days'),
+    path('Decrease-rent-days/<slug>/',decreasedays, name='Decraese-rent-days'),
+    path('add-coupon/', AddCouponView.as_view(), name='add-coupon'),
+    path('remove-from-cart/<slug>/', remove_from_cart, name='remove-from-cart'),
+    path('remove-item-from-cart/<slug>/', remove_single_item_from_cart,
+         name='remove-single-item-from-cart'),
+    path('payment/<payment_option>/', PaymentView.as_view(), name='payment'),
+    path('request-refund/', RequestRefundView.as_view(), name='request-refund')
+]

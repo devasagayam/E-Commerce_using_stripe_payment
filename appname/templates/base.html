@@ -1,0 +1,316 @@
+{% load static %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tarrif Rent @ one Step</title>
+<!-- for-mobile-apps -->
+
+{% block extra_head %}
+
+{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Best Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static "images/tarrif.jpg" %}" rel="icon" type="image/icon type" media="all" />
+
+<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" media="all" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+<!-- js -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<!-- //js -->
+<!-- cart -->
+<script src="{% static "js/simpleCart.min.js" %}"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="{% static "js/bootstrap-3.1.1.min.js" %}"></script>
+<!-- //for bootstrap working -->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- timer -->
+<link rel="stylesheet" href="{% static "css/jquery.countdown.css" %}" />
+<!-- //timer -->
+<!-- animation-effect -->
+<link href="{% static "css/animate.min.css" %}" rel="stylesheet">
+<script src="{% static "js/wow.min.js" %}"></script>
+<script>
+ new WOW().init();
+</script>
+<!-- //animation-effect -->
+</head>
+<style>
+
+#btn{
+padding: 12px 20px;
+background: #7F00FF;
+border: none;
+color: white;
+border-radius: 30px;
+font-size: 12px;
+text-decoration: none;
+font-weight: bold;
+transition: all .3s ease-in;
+}
+
+#btn:hover{
+background: transparent;
+color: #7F00FF;
+border: 2px solid #7F00FF;
+}
+
+
+</style>
+
+<body>
+<!-- header -->
+	<div class="header">
+		<div class="container">
+			<div class="header-grid">
+				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+					<ul>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:tariff.rentatonestep@gmail.com">tariff.rentatonestep@gmail.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 892</li>
+					 {% comment %}
+					 {% if user.is_superuser %}
+					 <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="{% url 'accounts:logout' %}">Logout</a></li>
+
+					 {% endcomment %}
+					  {% if user.is_authenticated %}
+						<li><i class="fa fa-user" aria-hidden="true"></i><a href="{% url 'accounts:profile' username=user.username %}">&nbsp&nbspProfile</a></li>
+						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="{% url 'accounts:logout' %}">Logout</a></li>
+						{% else %}
+						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="{% url 'accounts:login' %}">Login</a></li>
+						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="{% url 'accounts:signup' %}">Register</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				<div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
+					<ul class="social-icons">
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="g"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			{% if messages %}
+		  <div class="message">
+
+
+		  {% for message in messages  %}
+		  <div class="alert alert-info" role="alert">
+		   {{message}}
+		 </div>
+		  {% endfor %}
+		  </div>
+		  {% endif %}
+			<div class="logo-nav">
+				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
+					<h1><a href="/">Tarrif<span>Rent @ one step</span></a></h1>
+				</div>
+				<div class="logo-nav-left1">
+					<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header nav_2">
+						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/" class="act">Home</a></li>
+							<!-- Mega Menu -->
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-1">
+
+									<div class="products-breadcrumb">
+										{% comment %}
+										{% if user.is_superuser %}
+										<ul class="multi-column-dropdown">
+											<li  id="multi"><a  onmouseover="this.style.color='#d8703f'" onmouseout="this.style.color='#999'" href="{% url 'core:stock' %}">  &nbsp&nbspStock</a></li>
+											<div class="clearfix"></div>
+											<li><a  href="{% url 'core:addstock' %}">  &nbsp&nbsp Add Stock</a></li>
+											<div class="clearfix"></div>
+											<li><a href="{% url 'core:recover' %}"> &nbsp&nbspRecover Products</a></li>
+											<div class="clearfix"></div>
+											<li><a href="{% url 'core:transaction' %}"> &nbsp&nbspAll Transactions</a></li>
+											<div class="clearfix"></div>
+											<li><a href="{% url 'core:refrq' %}"> &nbsp&nbspRefund Requests</a></li>
+											<div class="clearfix"></div>
+											<li><a href="{% url 'accounts:userlist' %}"> &nbsp&nbspUser Details</a></li>
+											<div class="clearfix"></div>
+										</ul>
+										{% endcomment %}
+
+											{% if user.is_authenticated %}
+											<ul class="multi-column-dropdown">
+												<li  id="multi"><a  onmouseover="this.style.color='#d8703f'" onmouseout="this.style.color='#999'" href="{% url 'core:uproduct' %}">  &nbsp&nbspYour products</a></li>
+												<div class="clearfix"></div>
+												<li><a  href="{% url 'core:utransaction' %}">  &nbsp&nbspAll Transactions</a></li>
+												<div class="clearfix"></div>
+												<li><a href="{% url 'core:request-refund' %}"> &nbsp&nbspRequest Refund</a></li>
+											</ul>
+											{% endif %}
+											</div>
+										<div class="clearfix"></div>
+								</ul>
+							</li>
+							<li><a href="{% url 'core:cont' %}">Contact Us</a></li>
+						</ul>
+					</div>
+					</nav>
+				</div>
+				<div class="logo-nav-right">
+					<div class="search-box">
+						<div id="sb-search" class="sb-search">
+							<form method="GET" action="{% url 'core:costume' %}">
+								{% csrf_token %}
+								<input class="sb-search-input" placeholder="Enter your search term..."  type="search" id="search" name="s">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search"> </span>
+							</form>
+						</div>
+					</div>
+						<!-- search-scripts -->
+						<script src="{% static "js/classie.js" %}"></script>
+						<script src="{% static "js/uisearch.js" %}"></script>
+							<script>
+								new UISearch( document.getElementById( 'sb-search' ) );
+							</script>
+						<!-- //search-scripts -->
+				</div>
+
+
+				<div class="header-right">
+					<div class="cart box_1">
+						<a href="{% url 'core:order-summary' %}" class="nav-link waves-effect"><i onmouseover="this.style.color='#d8703f'" onmouseout="this.style.color='#000000'" style="color:black;">Your Cart&nbsp&nbsp&nbsp</i>
+							<span style="color:white; background:black; font-size:20px;" class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }}<i style="color:white;" class="fas fa-shopping-cart"></i></span>
+						</a>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //header -->
+{% block body %}
+{% endblock %}
+{% block extra_scripts %}
+{% endblock %}
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-grids">
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
+					<h3>About Us</h3>
+					<p>Tariff is one of the biggest online rental site.<span>this site provides fancy clothes,
+						variety costumes, And also provides party time products for rent.</span></p>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
+					<h3>Contact Info</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>17, 36th Cross Road, 26th Main Rd, 4th T Block East, Jayanagar, Bengaluru, Karnataka 560041.</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:tariff.rentatonestep@gmail.com">tariff.rentatonestep@gmail.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 892</li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".7s">
+					<h3>Flickr Posts</h3>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/13.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/14.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/15.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/16.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/13.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/14.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/15.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/16.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/13.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/14.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/15.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="footer-grid-left">
+						<a href="single.html"><img src="{% static "static/images/16.jpg" %}" alt=" " class="img-responsive" /></a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".8s">
+					<h3>Blog Posts</h3>
+					<div class="footer-grid-sub-grids">
+						<div class="footer-grid-sub-grid-left">
+							<a href="single.html"><img src="{% static "images/stage.jpg" %}" alt=" " class="img-responsive" /></a>
+						</div>
+						<div class="footer-grid-sub-grid-right">
+							<h4><a href="single.html">Stage Light</a></h4>
+							<p>Posted On 25/3/2020</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="footer-grid-sub-grids">
+						<div class="footer-grid-sub-grid-left">
+							<a href="single.html"><img src="{% static "images/9898.jpg" %}" alt=" " class="img-responsive" /></a>
+						</div>
+						<div class="footer-grid-sub-grid-right">
+							<h4><a href="single.html">Lord Ram</a></h4>
+							<p>Posted On 25/3/2020</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
+				<h2><a href="index.html">Tarrif <span>Rent @ one Step</span></a></h2>
+			</div>
+
+	</div>
+  <script>
+     $(document).ready(function() {
+         // messages timeout for 10 sec
+         setTimeout(function() {
+             $('.message').fadeOut('slow');
+         }, 6000); // <-- time in milliseconds, 1000 =  1 sec
+
+         // delete message
+         $('.del-msg').live('click',function(){
+             $('.del-msg').parent().attr('style', 'display:none;');
+         })
+     });
+ </script>
+<!-- //footer -->
+</body>
+</html>

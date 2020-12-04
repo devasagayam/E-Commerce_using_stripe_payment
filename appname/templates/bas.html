@@ -1,0 +1,346 @@
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    {% block extra_head %}
+
+    {% endblock extra_head %}
+
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+    		$(".scroll").click(function(event){
+    			event.preventDefault();
+    			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    		});
+    	});
+    </script>
+    <!-- start-smoth-scrolling -->
+    <style>
+      .back{
+        background:#CCEEFF;
+
+      }
+    </style>
+    </head>
+
+    <body>
+    <!-- header -->
+
+
+
+
+    <div class="agileits_header">
+  		<div class="w3l_offers">
+  			<a href="{% url 'core:home' %}">Today's special Offers !</a>
+  		</div>
+
+      <div class="w3l_header_right1">
+        <h2><a href="mail.html">Contact Us</a></h2>
+      </div>
+
+      {% if user.is_superuser %}
+      <div style="float:right;" class="product_list_header">
+        <a href="{% url 'accounts:logout' %}" class="nav-link waves-effect">
+          <i class="fa fa-sign-out"></i>
+          <span class="clearfix d-none d-sm-inline-block"> Sign Out</span>
+        </a>
+      </div>
+      {% else %}
+      <div style="float:right;" class="product_list_header">
+        <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+          <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+          <i class="fas fa-shopping-cart"></i>
+          <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+        </a>
+      </div>
+
+      {% endif %}
+
+
+  		<div class="clearfix"> </div>
+  	</div>
+
+
+ {% if messages %}
+ <div class="message">
+
+
+ {% for message in messages  %}
+ <div class="alert alert-info" role="alert">
+  {{message}}
+</div>
+ {% endfor %}
+ </div>
+ {% endif %}
+
+ <script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.message').fadeOut('slow');
+        }, 6000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+
+    <!-- script-for sticky-nav -->
+    	<script>
+    	$(document).ready(function() {
+    		 var navoffeset=$(".agileits_header").offset().top;
+    		 $(window).scroll(function(){
+    			var scrollpos=$(window).scrollTop();
+    			if(scrollpos >=navoffeset){
+    				$(".agileits_header").addClass("fixed");
+    			}else{
+    				$(".agileits_header").removeClass("fixed");
+    			}
+    		 });
+
+    	});
+    	</script>
+    <!-- //script-for sticky-nav -->
+    <div class="back">
+    	<div class="logo_products">
+    		<div class="container">
+    			<div class="">
+    			</div>
+    			<div class="w3ls_logo_products_left1">
+    				<ul class="special_items">
+    					<li><a href="{% url 'core:costume' %}">Costumes</a><i>/</i></li>
+    					<li><a href="{% url 'core:party' %}">Event-Planning Products</a><i>/</i></li>
+    					<li><a href="services.html">About Us</a></li>
+    				</ul>
+    			</div>
+    			<div class="w3ls_logo_products_left1">
+    				<ul class="phone_email">
+    					<li><i class="fa fa-phone" aria-hidden="true"></i>(+91) 8310491589</li>
+    					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:tariff.rentatonestep@gmail.com">tariff.rentatonestep@gmail.com</a></li>
+    				</ul>
+    			</div>
+    			<div class="clearfix"> </div>
+    		</div>
+    	</div>
+      </div>
+    <!-- //header -->
+    <!-- banner -->
+    <!-- products-breadcrumb -->
+
+
+
+    	<div class="products-breadcrumb">
+    		<div class="container">
+
+          {% if user.is_superuser %}
+          <ul>
+          <li><i class="fa fa-bar-chart" aria-hidden="true"></i><a href="{% url 'core:stock' %}">Stock</a><span>|</span></li>
+          <li><i class="fa fa-plus-square-o" aria-hidden="true"></i><a href="{% url 'core:addstock' %}">Add Stock</a><span>|</span></li>
+          <li><i class="fa fa-money" aria-hidden="true"></i><a href="{% url 'core:recover' %}">Recover Products</a><span>|</span></li>
+          <li><i class="fa fa-money" aria-hidden="true"></i><a href="{% url 'core:transaction' %}">All Transactions</a><span>|</span></li>
+          <li><i class="fa fa-money" aria-hidden="true"></i><a href="{% url 'core:refrq' %}">Refund Requests</a><span>|</span></li>
+          <li><i class="fa fa-users" aria-hidden="true"></i><a href="/">User Details</a><span>|</span></li>
+
+        	</ul>
+
+          {% elif user.is_authenticated %}
+          	<ul>
+          <li><i class="fa fa-home" aria-hidden="true"></i><a href="{% url 'core:home' %}">Home</a><span>|</span></li>
+          <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{% url 'core:uproduct' %}">Your products</a><span>|</span></li>
+          <li><i class="fa fa-money" aria-hidden="true"></i><a href="{% url 'core:utransaction' %}">All Transactions</a><span>|</span></li>
+          <li><i class="fa fa-money" aria-hidden="true"></i><a href="{% url 'core:request-refund' %}">Request Refund</a><span>|</span></li>
+          <li><i class="fa fa-user" aria-hidden="true"></i><a href="{% url 'accounts:profile' username=user.username %}">Profile</a><span>|</span></li>
+          <li><i class="fa fa-sign-out" aria-hidden="true"></i><a href="{% url 'accounts:logout' %}">Sign Out</a><span>|</span></li>
+
+            	</ul>
+
+          {% else %}
+          <ul>
+          <li><i class="fa fa-home" aria-hidden="true"></i><a href="{% url 'core:home' %}">Home</a><span>|</span></li>
+          <li><i class="fa fa-plus-square-o" aria-hidden="true"></i><a href="{% url 'accounts:signup' %}">Sign Up</a><span>|</span></li>
+          <li><i class="fa fa-sign-in" aria-hidden="true"></i><a href="{% url 'accounts:login' %}">Sign In</a><span>|</span></li>
+          </ul>
+
+
+          {% endif %}
+
+    		</div>
+    	</div>
+
+
+    <!-- //products-breadcrumb -->
+
+
+
+  <div class="back">
+      {% block body %}
+
+      {% endblock %}
+      </div>
+
+    <!-- footer -->
+    	<div class="footer">
+    		<div class="container">
+    			<div class="col-md-3 w3_footer_grid">
+    				<h3>information</h3>
+    				<ul class="w3_footer_grid_list">
+    					<li><a href="events.html">Events</a></li>
+    					<li><a href="about.html">About Us</a></li>
+    					<li><a href="products.html">Best Deals</a></li>
+    					<li><a href="services.html">Services</a></li>
+    					<li><a href="short-codes.html">Short Codes</a></li>
+    				</ul>
+    			</div>
+    			<div class="col-md-3 w3_footer_grid">
+    				<h3>policy info</h3>
+    				<ul class="w3_footer_grid_list">
+    					<li><a href="{% url 'core:faq' %}">FAQ</a></li>
+    					<li><a href="privacy.html">privacy policy</a></li>
+    					<li><a href="privacy.html">terms of use</a></li>
+    				</ul>
+    			</div>
+    			<div class="col-md-3 w3_footer_grid">
+    				<h3>what in stores</h3>
+    				<ul class="w3_footer_grid_list">
+    					<li><a href="pet.html">Pet Food</a></li>
+    					<li><a href="frozen.html">Frozen Snacks</a></li>
+    					<li><a href="kitchen.html">Kitchen</a></li>
+    					<li><a href="products.html">Branded Foods</a></li>
+    					<li><a href="household.html">Households</a></li>
+    				</ul>
+    			</div>
+    			<div class="col-md-3 w3_footer_grid">
+    				<h3>twitter posts</h3>
+    				<ul class="w3_footer_grid_list1">
+    					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a href="#">http://sd.ds/13jklf#</a>
+    						eius modi tempora incidunt ut labore et
+    						<a href="#">http://sd.ds/1389kjklf#</a>quo nulla.</span></li>
+    					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a href="#">http://fd.uf/56hfg#</a>
+    						eius modi tempora incidunt ut labore et
+    						<a href="#">http://fd.uf/56hfg#</a>quo nulla.</span></li>
+    				</ul>
+    			</div>
+    			<div class="clearfix"> </div>
+    			<div class="agile_footer_grids">
+    				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+    					<div class="w3_footer_grid_bottom">
+    						<h4>100% secure payments</h4>
+    						<img src="{% static "images/card.png" %}" alt=" " class="img-responsive" />
+    					</div>
+    				</div>
+    				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+    					<div class="w3_footer_grid_bottom">
+    						<h5>connect with us</h5>
+    						<ul class="agileits_social_icons">
+    							<li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+    							<li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+    							<li><a href="#" class="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+    							<li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+    							<li><a href="#" class="dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+    						</ul>
+    					</div>
+    				</div>
+    				<div class="clearfix"> </div>
+    			</div>
+    			<div class="wthree_footer_copy">
+    				<p>© 2020 Tariff. All rights reserved | Design by <a href="">Deva Sagayam</a></p>
+    			</div>
+    		</div>
+    	</div>
+    <!-- //footer -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $(".dropdown").hover(
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+    </script>
+    <!-- here stars scrolling icon -->
+    	<script type="text/javascript">
+    		$(document).ready(function() {
+    			/*
+    				var defaults = {
+    				containerID: 'toTop', // fading element id
+    				containerHoverID: 'toTopHover', // fading element hover id
+    				scrollSpeed: 1200,
+    			 	easingType: 'linear'
+    				};
+
+    			().UItoTop({ easingType: 'easeOutQuart' });
+
+    			});
+    	</script>
+    <!-- //here ends scrolling icon -->
+
+
+
+
+    <script src="{% static 'js/minicart.js' %}"></script>
+    <script>
+    		paypal.minicart.render();
+
+
+
+    		paypal.minicart.cart.on('checkout', function (evt) {
+    			var items = this.items(),
+    				len = items.length,
+    				total = 0,
+    				i;
+
+    			// Count the number of each item in the cart
+    			for (i = 0; i < len; i++) {
+    				total += items[i].get('quantity');
+    			}
+
+    			if (total < 3) {
+    				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+    				evt.preventDefault();
+    			}
+    		});
+
+    	</script>
+      {% block extra_scripts %}
+
+      {% endblock extra_scripts %}
+    </body>
+    </html>

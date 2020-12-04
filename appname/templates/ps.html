@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+</style>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+      .img1 img{
+        height: 27%;
+        width: 15%;
+        position: absolute;
+        border-radius: 0% 0% 50% 50%;
+        top: 12%;
+        left: 50.2%;
+      }
+      .sty{
+        width: 550px;
+        height: 650px;
+        margin-top: 2%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        top: 47%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+      }
+      .img2 img{
+        height: 100%;
+        width: 100%;
+
+      }
+      .re{
+        width: 80%;
+        background-color: white;
+        color: black;
+        position: absolute;
+        top: 0%;
+        left: 0;
+      }
+      .sty .btn{
+        width: 100%;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background: none;
+        background-color: white;
+        color: #4DA6FF;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 12px 24px;
+        border: 2px solid #4DA6FF;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+        transition: 0.8s;
+        overflow: hidden;
+        width: 30%;
+      }
+      .sty .btn:hover{
+        background: #51c27c;
+        color: #fff;
+      }
+      .sty .btn::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: #fff;
+        z-index: -1;
+        transition: 0.8s;
+      }
+      .sty .btn::before{
+        top: 0;
+        border-radius: 0 0 50% 50%;
+      }
+      .sty .btn:hover::before{
+        height: 180%;
+      }
+      .rs{
+
+        width: auto;
+        color:white;
+        position: absolute;
+        top: 16%;
+        left: 20%;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .line{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 27%;
+        left: 0.5%;
+        font-size: 23px;
+      }
+      .name{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        font-size: 23px;
+      }
+      .email{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 47%;
+        left: 22%;
+        font-size: 23px;
+      }
+      .line2{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 43%;
+        font-size: 23px;
+      }
+      .date{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 65%;
+        left: 40%;
+        font-size: 23px;
+      }
+      .tnx{
+        width: auto;
+        color: white;
+        position: absolute;
+        top: 72%;
+        left: 22%;
+        font-size: 23px;
+      }
+
+
+
+    </style>
+
+  </head>
+  <body>
+
+      <div class="img2">
+        <img src="{% static 'bg1.jpg' %}" alt="">
+      </div>
+      <div class="sty">
+      <h1 class="re">Payment Successful</h1>
+      <label class="rs"><u>₹5000.00</u></label>
+      <p class="line">_______________________________________________</p>
+      <label class="name">Afrid</label>
+      <label class="email">mak.moinsam143@gmail.com</label>
+      <p class="line2">_______</p>
+      <label class="date">19/09/1999</label>
+      <label class="tnx">Tnx ID GTUT5R7E6AK573B35</label>
+
+      <input class="btn" type="submit" name="" value="OK">
+      </div>
+      <div class="img1">
+        <img src="{% static 'success.gif' %}" alt="">
+      </div>
+  </body>
+
+</html>

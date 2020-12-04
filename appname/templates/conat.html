@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Mail Us</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+<!-- mail -->
+	<div class="mail animated wow zoomIn" data-wow-delay=".5s">
+		<div class="container">
+			<h3>Mail Us</h3>
+
+			<div class="mail-grids">
+				<div class="col-md-8 mail-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+					<form method="post">
+						{% csrf_token %}
+						<input type="text" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+						<input type="email" name="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+						<input type="text" name="subject" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}" required="">
+						<textarea type="text" name="msg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+						<input type="submit" value="Submit Now" >
+					</form>
+				</div>
+				<div class="col-md-4 mail-grid-right animated wow slideInRight" data-wow-delay=".5s">
+					<div class="mail-grid-right1">
+						<img src="{% static 'static/images/3.png' %}" alt=" " class="img-responsive" />
+						<h4>Tariff Khan <span>Manager</span></h4>
+						<ul class="phone-mail">
+							<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone: +1234 567 892</li>
+							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:tariff.rentatonestep@gmail.com">tariff.rentatonestep@gmail.com</a></li>
+						</ul>
+						<ul class="social-icons">
+							<li><a href="#" class="facebook"></a></li>
+							<li><a href="#" class="twitter"></a></li>
+							<li><a href="#" class="g"></a></li>
+							<li><a href="#" class="instagram"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<iframe class="animated wow slideInLeft" data-wow-delay=".5s" <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7691654132427!2d77.5907010148215!3d12.922552490888089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5b6cdb49ffb3d24!2sSSMRV%20College%20-%20UG%2C%20PG%20Programmes%20%26%20Research%20Centre!5e0!3m2!1sen!2sin!4v1598086185142!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>>
+		</div>
+	</div>
+<!-- //mail -->
+{% endblock %}

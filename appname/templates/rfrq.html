@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block body %}
+<!-- breadcrumbs -->
+
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Refund Requests</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+<!-- checkout -->
+	<div class="checkout">
+		<div class="container">
+			<h3 class="animated wow slideInLeft" data-wow-delay=".5s"> Refund Requests : <span></span></h3>
+			<div class="checkout-right animated wow slideInUp" data-wow-delay=".5s">
+				<table class="timetable_sub">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+              <th>User Name</th>
+							<th>Transactions Id</th>
+							<th>Date</th>
+	            <th>Amount</th>
+              <th>View More</th>
+						</tr>
+					</thead>
+					{% for i in info %}
+
+					<tr class="rem1">
+						<td class="invert">{{ forloop.counter }}</td>
+							<td class="invert">{{i.user.username}}</td>
+							<td class="invert">{{i.ref_code}}</td>
+							<td class="invert">{{i.ordered_date}}</td>
+              <td  class="invert">{{i.payment.amount}}</td>
+              <td  class="invert"><a href="{% url 'core:reason' pk=i.id %}"> &nbsp &nbsp &nbsp<i class="fa fa-arrow-right" aria-hidden="true"></i>
+    </a></td>
+					</tr>
+
+					{% empty %}
+          <tr>
+	            <td colspan='6'>No Transactions</td>
+	        </tr>
+					{% endfor %}
+
+	        <tr>
+	            <td colspan="6">{% if is_paginated %}
+					    <nav class="d-flex justify-content-center wow fadeIn">
+					      <ul class="pagination pg-blue">
+
+					        {% if page_obj.has_previous %}
+					        <li class="page-item">
+					          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+					            <span aria-hidden="true">&laquo;</span>
+					            <span class="sr-only">Previous</span>
+					          </a>
+					        </li>
+					        {% endif %}
+
+					        <li class="page-item active">
+					          <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+					            <span class="sr-only">(current)</span>
+					          </a>
+					        </li>
+
+					        {% if page_obj.has_next %}
+					        <li class="page-item">
+					          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+					            <span aria-hidden="true">&raquo;</span>
+					            <span class="sr-only">Next</span>
+					          </a>
+					        </li>
+					        {% endif %}
+					      </ul>
+					    </nav>
+					    {% endif %}</td>
+
+	        </tr>
+          </table>
+          </div>
+        </div>
+      </div>
+
+<!-- //checkout -->
+{% endblock body %}

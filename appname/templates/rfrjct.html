@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ product.user.username }} Sorry for inconvenience,
+
+The refund request for the Transaction-id: {{product.ref_code}} for the payment of ₹ {{product.payment.amount}} has been dis-aprooved.
+
+
+Sincerely,
+Tariff Rent@oneStep Team
+
+{% endautoescape %}

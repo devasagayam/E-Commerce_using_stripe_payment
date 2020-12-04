@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+{% block body %}
+<style >
+  #lg{
+    background:#1966FF;
+  }
+  #lg:hover{
+    background:#19B2FF;
+  }
+  .kuchbi{
+          width: 450px;
+          height: 100%;
+          margin: 20px auto;
+          border: 1px solid #b0a9a9;
+          padding: 14px 10px;
+          outline: none;
+          color: #000000;
+          font-weight: bold;
+
+          border-radius: 10px;
+  }
+</style>
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Update Stock</li>
+    </ol>
+  </div>
+</div>
+
+<div class="login">
+  <div class="container">
+    <h3 class="animated wow zoomIn" data-wow-delay=".5s">Update Stock</h3>
+
+    <div class="kuchbi">
+
+
+      <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" id="btn" value="Update">
+
+      </form>
+      </div>
+    </div>
+</div>
+
+{% endblock body %}

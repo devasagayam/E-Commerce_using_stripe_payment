@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tarrif Rent @ one Step</title>
+    <link href="{% static "images/tarrif.jpg" %}" rel="icon" type="image/icon type" media="all" />
+  </head>
+<style media="screen">
+  html, body{
+  background:#222;
+  margin:0;
+  height:100%;
+  text-align:center;
+  color:#ddd;
+  font-family:'Poiret One', cursive;
+  font-size:1em;
+  font-variant:small-caps;
+}
+body:before{
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+#main{
+  display: inline-block;
+  padding: 10px 15px;
+  width:90%;
+}
+#progress{
+  background:black;
+  height:6px;
+  border-radius:50%;
+  text-align:left;
+  font-size:6px;
+  overflow:hidden;
+}
+.dot{
+  display:inline-block;
+  height:6px;
+  width:6px;
+  background:#F00;
+  position:relative;
+  left:-40px;
+  margin-right:-6px;
+  animation: dot-load infinite 5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  border-radius:50%;
+}
+.dot:nth-child(1){
+  animation-delay:.3s;
+}
+.dot:nth-child(2){
+  animation-delay:.15s;
+}
+.dot:nth-child(4){
+  animation-delay:-.15s;
+}
+.dot:nth-child(5){
+  animation-delay:-.3s;
+}
+@keyframes dot-load{
+  0%{left:-40px;background:#F00;opacity:.6}
+  50%{left:50%;background:#0F0;opacity:.9}
+  100%{left:100%;background:#00F;opacity:.6}
+}
+</style>
+  <body>
+    <div id='main'>
+      {% if info.Name %}
+Welcome {{info.Name}} To Tarrif World
+      {% else %}
+      Welcome {{info.user.username}} To Tarrif World
+      {% endif %}
+      <br><br>
+  <div id='progress'>
+    <div class='dot'></div>
+    <div class='dot'></div>
+    <div class='dot'></div>
+    <div class='dot'></div>
+    <div class='dot'></div>
+  </div>
+</div>
+  </body>
+  <script>
+      setTimeout(function(){
+         window.location.href = '/' ;
+      }, 5000);
+  </script>
+</html>

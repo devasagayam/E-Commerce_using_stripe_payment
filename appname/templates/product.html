@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="breadcrumbs">
+	<div class="container">
+		<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+			<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+			<li class="active">{{object.title}}</li>
+		</ol>
+	</div>
+</div>
+<!-- //breadcrumbs -->
+<!-- single -->
+<div class="single">
+	<div class="container">
+
+		<div class="col-md-8 single-right">
+			<div class="col-md-5 single-right-left animated wow slideInUp" data-wow-delay=".5s">
+				<div class="flexslider">
+					<ul class="slides">
+						<li style="list-style-type: none;" data-thumb="images/si2.jpg">
+							 <div class="thumb-image"> <img src="{{ object.image.url }}" data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+					</ul>
+				</div>
+				<!-- flixslider -->
+					<script defer src="js/jquery.flexslider.js"></script>
+					<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+					<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+						$('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+						});
+					});
+					</script>
+
+
+          <style >
+            .star-ratings-css {
+          unicode-bidi: bidi-override;
+          color: #c5c5c5;
+          font-size: 25px;
+          height: 25px;
+          width: 100px;
+          margin: 0 auto;
+          position: relative;
+          padding: 0;
+          text-shadow: 0px 1px 0 #a2a2a2;
+      }
+
+      .star-ratings-css-top {
+          color: #e7711b;
+          padding: 0;
+          position: absolute;
+          z-index: 1;
+          display: block;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+      }
+
+      .star-ratings-css-bottom {
+          padding: 0;
+          display: block;
+          z-index: 0;
+      }
+
+      .star-ratings-sprite {
+          background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+          font-size: 0;
+          height: 21px;
+          line-height: 0;
+          overflow: hidden;
+          text-indent: -999em;
+        }
+          #ali{
+            margin-top:-15%;
+						margin-left:-75%;
+
+          }
+
+					/* rating accept */
+					div.polaroid {
+						width: 80%;
+						background-color: white;
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+						margin-bottom: 25px;
+					}
+
+					div.container123 {
+						text-align: center;
+						padding: 10px 20px;
+					}
+					.rating {
+						width: 300px;
+						margin: 0 auto 1em;
+						font-size: 40px;
+						overflow:hidden;
+					}
+					.rating input {
+						float: right;
+						opacity: 0;
+						position: absolute;
+					}
+					.rating a,
+					.rating label {
+								float:right;
+								color: #aaa;
+								text-decoration: none;
+								-webkit-transition: color .4s;
+								-moz-transition: color .4s;
+								-o-transition: color .4s;
+								transition: color .4s;
+							}
+					.rating label:hover ~ label,
+					.rating input:focus ~ label,
+					.rating label:hover,
+							.rating a:hover,
+							.rating a:hover ~ a,
+							.rating a:focus,
+							.rating a:focus ~ a		{
+								color: orange;
+								cursor: pointer;
+							}
+							.rating2 {
+								direction: rtl;
+							}
+							.rating2 a {
+								float:none
+							}
+
+						/* //rating accept */
+
+          </style>
+
+
+
+				<!-- flixslider -->
+			</div>
+			<div class="col-md-7 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
+				<h3>{{object.title}}</h3>
+				<h4><span class="item_price">₹ {{ object.price }}</span></h4>
+
+				<div class="description">
+					<h5><i>Description</i></h5>
+					<p>{{ object.description }}</p>
+					<h1>{{avg}}</h1>
+				</div>&nbsp
+
+				<div class="rating1">
+
+          <div id="ali">
+            <div class="star-ratings-css">
+            <div class="star-ratings-css-top" style="width: {{width}}%">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      </div>
+      </div>
+
+				<p style="margin-top:-3.5%; margin-left:30%; font-size:13px;" >{{l}} <b>Reviews</b></p>
+				</div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+				{% if user.is_superuser %}
+				<div class="occasion-cart">
+					<a class="item_add" href="{% url 'core:updatestock' pk=object.id %}">Update </a>&nbsp&nbsp&nbsp&nbsp
+          <a class="item_add" href="{% url 'core:dlt' object.slug %}"">Remove Product </a>
+				</div>
+
+				{% else %}
+				<div class="occasion-cart">
+					<a class="item_add" href="{{ object.get_add_to_cart_url }}">add to cart </a>&nbsp&nbsp&nbsp&nbsp
+          <a class="item_add" href="{{ object.get_remove_from_cart_url }}">Remove from cart </a>
+				</div>
+				{% endif %}
+				<div class="social">
+					<div class="social-left">
+						<p>Share On :</p>
+					</div>
+					<div class="social-right">
+						<ul class="social-icons">
+							<li><a href="#" class="facebook"></a></li>
+							<li><a href="#" class="twitter"></a></li>
+							<li><a href="#" class="g"></a></li>
+							<li><a href="#" class="instagram"></a></li>
+						</ul>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+			<div class="bootstrap-tab animated wow slideInUp" data-wow-delay=".5s">
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					<ul id="myTab" class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Description</a></li>
+						<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">{% if ratings %}Reviews({{j}}){% endif %}</a></li>
+
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
+							<h5>Product Description</h5>
+							<p>{{ object.description }}
+							<span>
+
+								<div style="border:1px solid #e6e6e6;width:45%;">
+
+									{% if user.is_authenticated %}
+					        <h5>Rate this product</h5>
+					        <p style="font-size:15px;">&nbsp&nbsp&nbspTell others what you think</p>
+					      <div class="rating rating2" style="margin-left:-13%;">
+					  	<a href="#5" title="Give 5 stars" data-value="5">★</a>
+					  	<a href="#4" title="Give 4 stars" data-value="4">★</a>
+					  	<a href="#3" title="Give 3 stars" data-value="3">★</a>
+					  	<a href="#2" title="Give 2 stars" data-value="2">★</a>
+					  	<a href="#1" title="Give 1 star" data-value="1">★</a><br>
+
+					  	</div>
+							{% endif %}
+						</div>
+
+
+
+							</span></p>
+								</div>
+						<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
+							<div class="bootstrap-tab-text-grids">
+
+								{% if ratings %}
+								{% for i in ratings  %}
+
+
+								<div class="bootstrap-tab-text-grid">
+										{% if i.comment %}
+									<div class="bootstrap-tab-text-grid-left">
+
+										<img src="{% static "images/img.png" %}" alt=" " height="80" width="80" class="img-responsive" />
+									</div>
+									<div class="bootstrap-tab-text-grid-right">
+										<ul>
+											<li><a href="#">{{i.user.username}}</a></li>
+											<li><a href="#"><span class="glyphicon glyphicon-share" aria-hidden="true"></span>Reply</a></li>
+										</ul>
+
+										<ul style="margin-left:7%; margin-top:2%;">
+											<li><div style="">
+											<div id="ali">
+												<div class="star-ratings-css">
+												<div class="star-ratings-css-top" style="width: {{i.width}}%">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+									<div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+									</div>
+									</div>
+									</div></li>
+										</ul>
+
+										<ul style="margin-top:-7%;">
+											<li><p>{{i.comment}}.</p></li>
+										</ul>
+										<br>
+
+									</div>
+									{% endif %}
+								</div>
+								<div class="clearfix"> </div>
+
+								{% endfor %}
+								{% else %}
+								<p>No comments</p>
+								{% endif %}
+
+								<div class="clearfix"> </div>
+
+
+
+
+
+								{% if user.is_authenticated %}
+
+								<div class="add-review">
+									<h4>add a review</h4>
+									<form method="post" action="{% url 'core:coment' slug=object.slug %}">
+										{% csrf_token %}
+										<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+										<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+										<input type="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}" required="">
+										<textarea name="comment" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+										<input type="submit" value="Send" >
+									</form>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
+<!-- script for rating -->
+<script type="text/javascript">
+  $(".rating a").on('click', function(e){
+    let value = $(this).data('value');
+     $.ajax({
+        url: "{% url 'core:rating' slug=object.slug %}",
+        type: 'POST',
+        data: {'rating': value},
+        success: function (d){
+         // some processing
+        }
+     })
+  });
+  $(document).ready(function(){
+    $("#h").click(function(){
+      $("p").hide();
+    });
+    $("#s").click(function(){
+      $("p").show();
+    });
+  });
+</script>
+<!-- //script for rating -->
+
+
+{% endblock %}

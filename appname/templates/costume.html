@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+
+
+{% block body %}
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Products Based on : {{query}}</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+<!-- collections -->
+	<div class="new-collections">
+		<div class="container">
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Search Results</h3>
+
+			<div class="new-collections-grids">
+
+        <main>
+          <br>
+
+                <div class="container">
+
+
+
+            <!--Navbar-->
+
+
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+
+              <div class="row wow fadeIn">
+
+                {% for item in products %}
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                  <div class="card">
+
+                    <div class="view overlay">
+                      {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %}
+                      <img src="{{ item.image.url }}" class="card-img-top" width="150" height="150">
+                      <a href="{{ item.get_absolute_url }}">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+
+                    <div class="card-body text-center">
+                      <a href="" class="grey-text">
+                        <h5>{{ item.get_category_display }}</h5>
+                      </a>
+                      <h5>
+                        <strong>
+                          <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                            <span class="badge badge-pill {{ item.get_label_display }}-color">Per day Rent</span>
+                          </a>
+                        </strong>
+                      </h5>
+
+                      <h4 class="font-weight-bold blue-text">
+                        <strong><i class="fa fa-inr" aria-hidden="true"></i>
+                        {% if item.discount_price %}
+                        {{ item.discount_price }}
+                        {% else %}
+                        {{ item.price }}
+                        {% endif %}
+                        </strong>
+                      </h4>
+
+                    </div>
+                    <br>
+                  </div>
+
+                </div>
+                {% empty %}
+                <p>There is no product related to: {{query}}</p>
+                {% endfor %}
+              </div>
+
+
+            </section>
+
+</main>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //collections -->
+
+
+
+
+
+{% endblock body %}
